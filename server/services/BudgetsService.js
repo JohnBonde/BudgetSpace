@@ -1,18 +1,18 @@
 import mongoose from "mongoose";
-import Board from "../models/Budget";
+import Budgets from "../models/Budget";
 import ApiError from "../utils/ApiError";
 
-const _repository = mongoose.model("Board", Board);
+const _repository = mongoose.model("Budgets", Budgets);
 
-class BoardService {
+class BudgetsService {
   async getAll(userId) {
-    return await _repository.find({ authorId: userId });
+    return await _repository.find({});
   }
 
   async getById(id, userId) {
     let data = await _repository.findOne({ _id: id, authorId: userId });
     if (!data) {
-      throw new ApiError("Invalid ID or you do not own this board", 400);
+      throw new ApiError("Invalid ID or you do not own this Budgets", 400);
     }
     return data;
   }
@@ -29,7 +29,7 @@ class BoardService {
       { new: true }
     );
     if (!data) {
-      throw new ApiError("Invalid ID or you do not own this board", 400);
+      throw new ApiError("Invalid ID or you do not own this Budgets", 400);
     }
     return data;
   }
@@ -40,10 +40,10 @@ class BoardService {
       authorId: userId
     });
     if (!data) {
-      throw new ApiError("Invalid ID or you do not own this board", 400);
+      throw new ApiError("Invalid ID or you do not own this Budgets", 400);
     }
   }
 }
 
-const _boardService = new BoardService();
-export default _boardService;
+const _budgetsService = new BudgetsService();
+export default _budgetsService;

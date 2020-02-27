@@ -1,4 +1,4 @@
-import _boardService from "../services/BudgetsService";
+import _budgetsService from "../services/BudgetsService";
 import express from "express";
 import { Authorize } from "../middleware/authorize.js";
 
@@ -25,7 +25,7 @@ export default class BudgetsController {
   async getAll(req, res, next) {
     try {
       //only gets boards by user who is logged in
-      let data = await _boardService.getAll(req.session.uid);
+      let data = await _budgetsService.getAll();
       return res.send(data);
     } catch (err) {
       next(err);
@@ -34,7 +34,7 @@ export default class BudgetsController {
 
   async getById(req, res, next) {
     try {
-      let data = await _boardService.getById(req.params.id, req.session.uid);
+      let data = await _budgetsService.getById(req.params.id, req.session.uid);
       return res.send(data);
     } catch (error) {
       next(error);
@@ -44,7 +44,7 @@ export default class BudgetsController {
   async create(req, res, next) {
     try {
       req.body.authorId = req.session.uid;
-      let data = await _boardService.create(req.body);
+      let data = await _budgetsService.create(req.body);
       return res.status(201).send(data);
     } catch (error) {
       next(error);
@@ -53,7 +53,7 @@ export default class BudgetsController {
 
   async edit(req, res, next) {
     try {
-      let data = await _boardService.edit(
+      let data = await _budgetsService.edit(
         req.params.id,
         req.session.uid,
         req.body
@@ -66,7 +66,7 @@ export default class BudgetsController {
 
   async delete(req, res, next) {
     try {
-      await _boardService.delete(req.params.id, req.session.uid);
+      await _budgetsService.delete(req.params.id, req.session.uid);
       return res.send("Successfully deleted");
     } catch (error) {
       next(error);
