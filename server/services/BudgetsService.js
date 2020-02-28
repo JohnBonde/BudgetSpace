@@ -5,8 +5,16 @@ import ApiError from "../utils/ApiError";
 const _repository = mongoose.model("Budgets", Budgets);
 
 class BudgetsService {
-  async getAll(userId) {
-    return await _repository.find({});
+  async getAll() {
+    let res = await _repository.find({});
+    for (let i = 0; i < res.length; i++) {
+      const element = res[i];
+      element.authorId = null;
+      element._id = null;
+      element.createdAt = null;
+      element.updatedAt = null;
+    }
+    return res;
   }
 
   async getById(id, userId) {

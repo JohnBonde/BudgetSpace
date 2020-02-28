@@ -1,8 +1,6 @@
 <template>
   <div class="home">
-    <button type="button" class="btn btn-primary" @click="showModal">
-      Create Budget
-    </button>
+    <button type="button" class="btn btn-primary" @click="showModal">Create Budget</button>
     <create-modal v-show="isModalVisible" @close="closeModal" />
   </div>
 </template>
@@ -24,7 +22,7 @@ export default {
   },
   computed: {
     budgets() {
-      this.$store.state.publicBudgets;
+      return this.$store.state.budgets;
     },
     user() {
       return this.$store.state.user;
