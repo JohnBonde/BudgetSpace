@@ -116,6 +116,7 @@ export default {
         recEnt: 0,
         misc: 0
       };
+      this.close();
     }
   }
 };

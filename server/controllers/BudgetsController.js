@@ -9,7 +9,7 @@ export default class BudgetsController {
       .Router()
       .use(Authorize.authenticated)
       .get("", this.getAll)
-      .get("/:id", this.getById)
+      .get("/user", this.getByUserId)
       .post("", this.create)
       .put("/:id", this.edit)
       .delete("/:id", this.delete)
@@ -32,9 +32,9 @@ export default class BudgetsController {
     }
   }
 
-  async getById(req, res, next) {
+  async getByUserId(req, res, next) {
     try {
-      let data = await _budgetsService.getById(req.params.id, req.session.uid);
+      let data = await _budgetsService.getByUserId(req.session.uid);
       return res.send(data);
     } catch (error) {
       next(error);

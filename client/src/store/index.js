@@ -29,6 +29,9 @@ export default new Vuex.Store({
     },
     setBudgets(state, budgets) {
       state.budgets = budgets;
+    },
+    setMyBudget(state, budget) {
+      state.myBudget = budget;
     }
   },
   actions: {
@@ -78,8 +81,13 @@ export default new Vuex.Store({
       }
       commit("setBudgets", adjData);
     },
+    async getMyBudget({ commit, dispatch }) {
+      let res = await api.get("budgets/user");
+      commit("setMyBudget", res.data);
+    },
     async createBudget({ commit, dispatch }, rawData) {
-      await api.post("budgets", rawData);
+      let res = await api.post("budgets", rawData);
+      commit("setMyBudget", res.data);
       dispatch(this.getBudgets);
     }
     //#endregion

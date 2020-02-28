@@ -14,6 +14,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getBudgets");
+    this.$store.dispatch("getMyBudget");
   },
   data() {
     return {
@@ -26,6 +27,9 @@ export default {
     },
     user() {
       return this.$store.state.user;
+    },
+    myBudget() {
+      return this.$store.state.myBudget;
     }
   },
   methods: {
