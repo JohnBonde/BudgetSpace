@@ -28,23 +28,24 @@ class BudgetsService {
 
   async create(rawData) {
     let authorId = rawData.authorId;
-    let income = rawData.income;
+    let income = Number(rawData.income);
     let costs =
-      rawData.housing +
-      rawData.trans +
-      rawData.food +
-      rawData.utils +
-      rawData.insurance +
-      rawData.medical +
-      rawData.invest +
-      rawData.savings +
-      rawData.debtPay +
-      rawData.recEnt +
-      rawData.misc;
+      Number(rawData.housing) +
+      Number(rawData.trans) +
+      Number(rawData.food) +
+      Number(rawData.utils) +
+      Number(rawData.insurance) +
+      Number(rawData.medical) +
+      Number(rawData.invest) +
+      Number(rawData.savings) +
+      Number(rawData.debtPay) +
+      Number(rawData.recEnt) +
+      Number(rawData.misc);
     let exists = await _repository.findOne({ authorId });
-    if (income != costs) {
-      throw new ApiError("Income must equal costs");
-    } else if (exists) {
+    // if (income != costs) {
+    //   throw new ApiError("Income must equal costs");
+    // }
+    if (exists) {
       throw new ApiError("You can only have one budget");
     } else {
       let data = await _repository.create(rawData);

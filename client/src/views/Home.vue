@@ -3,6 +3,7 @@
     <div class="row">
       <div class="col">
         <button type="button" class="btn btn-primary" @click="showModal">Create Budget</button>
+        <button type="button" class="btn btn-danger" @click="logout">Logout</button>
       </div>
     </div>
     <div class="row">

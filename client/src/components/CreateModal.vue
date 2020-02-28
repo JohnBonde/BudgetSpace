@@ -15,15 +15,29 @@
               class="btn-close"
               @click="close"
               aria-label="Close modal"
-            >x</button>
+            >
+              x
+            </button>
           </slot>
         </header>
         <section class="modal-body" id="modalDescription">
           <slot name="body">
             <label for="income">Income</label>
-            <input type="number" id="income" for="income" required v-model="newBudget.income" />
+            <input
+              type="number"
+              id="income"
+              for="income"
+              required
+              v-model="newBudget.income"
+            />
             <label for="housing">Housing</label>
-            <input type="number" id="housing" for="housing" required v-model="newBudget.housing" />
+            <input
+              type="number"
+              id="housing"
+              for="housing"
+              required
+              v-model="newBudget.housing"
+            />
             <label for="transportation">Transportation</label>
             <input
               type="number"
@@ -33,9 +47,21 @@
               v-model="newBudget.trans"
             />
             <label for="food">Food</label>
-            <input type="number" id="food" for="food" required v-model="newBudget.food" />
+            <input
+              type="number"
+              id="food"
+              for="food"
+              required
+              v-model="newBudget.food"
+            />
             <label for="utilities">Utilities</label>
-            <input type="number" id="utilities" for="utilities" required v-model="newBudget.utils" />
+            <input
+              type="number"
+              id="utilities"
+              for="utilities"
+              required
+              v-model="newBudget.utils"
+            />
             <label for="insurance">Insurance</label>
             <input
               type="number"
@@ -45,17 +71,53 @@
               v-model="newBudget.insurance"
             />
             <label for="medical">Medical</label>
-            <input type="number" id="medical" for="medical" required v-model="newBudget.medical" />
+            <input
+              type="number"
+              id="medical"
+              for="medical"
+              required
+              v-model="newBudget.medical"
+            />
             <label for="savings">Savings</label>
-            <input type="number" id="savings" for="savings" required v-model="newBudget.savings" />
+            <input
+              type="number"
+              id="savings"
+              for="savings"
+              required
+              v-model="newBudget.savings"
+            />
             <label for="investing">Investing</label>
-            <input type="number" id="investing" for="investing" required v-model="newBudget.invest" />
+            <input
+              type="number"
+              id="investing"
+              for="investing"
+              required
+              v-model="newBudget.invest"
+            />
             <label for="debt">Debt Payments</label>
-            <input type="number" id="debt" for="debt" required v-model="newBudget.debtPay" />
+            <input
+              type="number"
+              id="debt"
+              for="debt"
+              required
+              v-model="newBudget.debtPay"
+            />
             <label for="rec">Recreation/Entertainment</label>
-            <input type="number" id="rec" for="rec" required v-model="newBudget.recEnt" />
+            <input
+              type="number"
+              id="rec"
+              for="rec"
+              required
+              v-model="newBudget.recEnt"
+            />
             <label for="misc">Miscellaneous</label>
-            <input type="number" id="misc" for="misc" required v-model="newBudget.misc" />
+            <input
+              type="number"
+              id="misc"
+              for="misc"
+              required
+              v-model="newBudget.misc"
+            />
           </slot>
         </section>
         <footer class="modal-footer">
@@ -66,7 +128,9 @@
               class="btn btn-success"
               @click.prevent="createBudget"
               aria-label="Submit"
-            >Submit</button>
+            >
+              Submit
+            </button>
           </slot>
         </footer>
       </div>
@@ -75,6 +139,7 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
 export default {
   name: "modal",
   data() {
@@ -101,22 +166,37 @@ export default {
     },
     createBudget() {
       let budget = { ...this.newBudget };
-      this.$store.dispatch("createBudget", budget);
-      this.newBudget = {
-        income: 0,
-        housing: 0,
-        trans: 0,
-        food: 0,
-        utils: 0,
-        insurance: 0,
-        medical: 0,
-        savings: 0,
-        invest: 0,
-        debtPay: 0,
-        recEnt: 0,
-        misc: 0
-      };
-      this.close();
+      let income = budget.income;
+      let sum = 0 - income;
+      for (let key in budget) {
+        if (budget.hasOwnProperty(key)) {
+          sum += Number(budget[key]);
+        }
+      }
+      if (sum != income) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Income and expenses must be equal."
+        });
+      } else {
+        this.$store.dispatch("createBudget", budget);
+        this.newBudget = {
+          income: 0,
+          housing: 0,
+          trans: 0,
+          food: 0,
+          utils: 0,
+          insurance: 0,
+          medical: 0,
+          savings: 0,
+          invest: 0,
+          debtPay: 0,
+          recEnt: 0,
+          misc: 0
+        };
+        this.close();
+      }
     }
   }
 };

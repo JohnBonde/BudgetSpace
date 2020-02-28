@@ -11,73 +11,73 @@
     <tbody>
       <tr>
         <th scope="row">Income</th>
-        <th>${{budgetData.income}}</th>
+        <th>${{ budgetData.income }}</th>
       </tr>
       <tr>
         <th scope="row">Housing</th>
-        <td>${{budgetData.housing}}</td>
-        <td>{{myPct[1]}}%</td>
-        <td></td>
+        <td>${{ budgetData.housing }}</td>
+        <td>{{ myPct[1] }}%</td>
+        <td>{{ avgPct[0] }}%</td>
       </tr>
       <tr>
         <th scope="row">Transportation</th>
-        <td>${{budgetData.trans}}</td>
-        <td>{{myPct[2]}}%</td>
-        <td></td>
+        <td>${{ budgetData.trans }}</td>
+        <td>{{ myPct[2] }}%</td>
+        <td>{{ avgPct[1] }}%</td>
       </tr>
       <tr>
         <th scope="row">Food</th>
-        <td>${{budgetData.food}}</td>
-        <td>{{myPct[3]}}%</td>
-        <td></td>
+        <td>${{ budgetData.food }}</td>
+        <td>{{ myPct[3] }}%</td>
+        <td>{{ avgPct[2] }}%</td>
       </tr>
       <tr>
         <th scope="row">Utilities</th>
-        <td>${{budgetData.utils}}</td>
-        <td>{{myPct[4]}}%</td>
-        <td></td>
+        <td>${{ budgetData.utils }}</td>
+        <td>{{ myPct[4] }}%</td>
+        <td>{{ avgPct[3] }}%</td>
       </tr>
       <tr>
         <th scope="row">Insurance</th>
-        <td>${{budgetData.insurance}}</td>
-        <td>{{myPct[5]}}%</td>
-        <td></td>
+        <td>${{ budgetData.insurance }}</td>
+        <td>{{ myPct[5] }}%</td>
+        <td>{{ avgPct[4] }}%</td>
       </tr>
       <tr>
         <th scope="row">Medical</th>
-        <td>${{budgetData.medical}}</td>
-        <td>{{myPct[6]}}%</td>
-        <td></td>
+        <td>${{ budgetData.medical }}</td>
+        <td>{{ myPct[6] }}%</td>
+        <td>{{ avgPct[5] }}%</td>
       </tr>
       <tr>
         <th scope="row">Investing</th>
-        <td>${{budgetData.invest}}</td>
-        <td>{{myPct[7]}}%</td>
-        <td></td>
+        <td>${{ budgetData.invest }}</td>
+        <td>{{ myPct[7] }}%</td>
+        <td>{{ avgPct[6] }}%</td>
       </tr>
       <tr>
         <th scope="row">Savings</th>
-        <td>${{budgetData.savings}}</td>
-        <td>{{myPct[8]}}%</td>
-        <td></td>
+        <td>${{ budgetData.savings }}</td>
+        <td>{{ myPct[8] }}%</td>
+        <td>{{ avgPct[7] }}%</td>
       </tr>
       <tr>
         <th scope="row">Debt Payments</th>
-        <td>${{budgetData.debtPay}}</td>
-        <td>{{myPct[9]}}%</td>
-        <td></td>
+        <td>${{ budgetData.debtPay }}</td>
+        <td>{{ myPct[9] }}%</td>
+        <td>{{ avgPct[8] }}%</td>
       </tr>
       <tr>
         <th scope="row">Recreation/Entertainment</th>
-        <td>${{budgetData.recEnt}}</td>
-        <td>{{myPct[10]}}%</td>
-        <td></td>
+        <td>${{ budgetData.recEnt }}</td>
+        <td>{{ myPct[10] }}%</td>
+        <td>{{ avgPct[9] }}%</td>
       </tr>
       <tr>
         <th scope="row">Miscellaneous</th>
-        <td>${{budgetData.misc}}</td>
-        <td>{{myPct[11]}}%</td>
-        <td></td>
+        <td>${{ budgetData.misc }}</td>
+        <td>{{ myPct[11] }}%</td>
+        <td>{{ avgPct[10] }}%</td>
       </tr>
     </tbody>
   </table>
@@ -93,12 +93,22 @@ export default {
     },
     avgPct() {
       let data = this.userData;
-      let arr = [];
+      let arr = [[], [], [], [], [], [], [], [], [], [], []];
+      let arr2 = [];
       for (let i = 0; i < data.length; i++) {
         const element = data[i];
-        arr.push(this.pctCalc(element));
+        let newArr = this.pctCalc(element);
+        for (let i = 1; i < newArr.length; i++) {
+          const elem = newArr[i];
+          arr[i - 1].push(elem);
+        }
       }
-      return arr;
+      for (let i = 0; i < arr.length; i++) {
+        const element = arr[i];
+        const reducer = (a, c) => a + c;
+        arr2.push(Math.round(element.reduce(reducer) / element.length));
+      }
+      return arr2;
     }
   },
   methods: {
@@ -123,5 +133,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
