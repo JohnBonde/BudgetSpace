@@ -67,7 +67,16 @@ export default new Vuex.Store({
     //#region -- BUDGETS --
     async getBudgets({ commit, dispatch }) {
       let res = await api.get("budgets");
-      commit("setBudgets", res.data);
+      let adjData = res.data;
+      for (let i = 0; i < adjData.length; i++) {
+        const element = adjData[i];
+        delete element.authorId;
+        delete element._id;
+        delete element.createdAt;
+        delete element.updatedAt;
+        delete element.__v;
+      }
+      commit("setBudgets", adjData);
     },
     async createBudget({ commit, dispatch }, rawData) {
       await api.post("budgets", rawData);
