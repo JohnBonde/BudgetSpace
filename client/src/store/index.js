@@ -21,7 +21,8 @@ export default new Vuex.Store({
   state: {
     user: {},
     budgets: [],
-    myBudget: {}
+    myBudget: {},
+    myBudgetRaw: {}
   },
   mutations: {
     setUser(state, user) {
@@ -32,6 +33,9 @@ export default new Vuex.Store({
     },
     setMyBudget(state, budget) {
       state.myBudget = budget;
+    },
+    setMyBudgetRaw(state, budget) {
+      state.myBudgetRaw = budget;
     }
   },
   actions: {
@@ -70,20 +74,12 @@ export default new Vuex.Store({
     //#region -- BUDGETS --
     async getBudgets({ commit, dispatch }) {
       let res = await api.get("budgets");
-      let adjData = res.data;
-      for (let i = 0; i < adjData.length; i++) {
-        const element = adjData[i];
-        delete element.authorId;
-        delete element._id;
-        delete element.createdAt;
-        delete element.updatedAt;
-        delete element.__v;
-      }
-      commit("setBudgets", adjData);
+      commit("setBudgets", res.data);
     },
     async getMyBudget({ commit, dispatch }) {
       let res = await api.get("budgets/user");
       commit("setMyBudget", res.data);
+      commit("setMyBudgetRaw", res.data);
     },
     async createBudget({ commit, dispatch }, rawData) {
       let res = await api.post("budgets", rawData);

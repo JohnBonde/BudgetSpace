@@ -12,7 +12,7 @@
           v-if="myBudget"
           type="button"
           class="btn btn-warning"
-          @click="showModal2"
+          @click="showModal2(); forceRerender();"
         >Edit Budget</button>
         <button type="button" class="btn btn-danger" @click="logout">Logout</button>
       </div>
@@ -23,7 +23,12 @@
       </div>
     </div>
     <create-modal v-show="isModalVisible" @close="closeModal" />
-    <edit-modal :bData="myBudget" v-show="isModalVisible2" @close="closeModal2" />
+    <edit-modal
+      :bData="myBudgetRaw"
+      :key="componentKey"
+      v-show="isModalVisible2"
+      @close="closeModal2"
+    />
   </div>
 </template>
 
@@ -45,7 +50,8 @@ export default {
   data() {
     return {
       isModalVisible: false,
-      isModalVisible2: false
+      isModalVisible2: false,
+      componentKey: 0
     };
   },
   computed: {
@@ -57,6 +63,10 @@ export default {
     },
     myBudget() {
       return this.$store.state.myBudget;
+    },
+    myBudgetRaw() {
+      debugger;
+      return this.$store.state.myBudgetRaw;
     }
   },
   methods: {
@@ -74,6 +84,9 @@ export default {
     },
     logout() {
       this.$store.dispatch("logout");
+    },
+    forceRerender() {
+      this.componentKey += 1;
     }
   }
 };
