@@ -40,7 +40,7 @@ export default new Vuex.Store({
       try {
         let user = await AuthService.Register(creds);
         commit("setUser", user);
-        router.push({ name: "boards" });
+        router.push({ name: "home" });
       } catch (e) {
         console.warn(e.message);
       }
@@ -49,7 +49,7 @@ export default new Vuex.Store({
       try {
         let user = await AuthService.Login(creds);
         commit("setUser", user);
-        router.push({ name: "boards" });
+        router.push({ name: "home" });
       } catch (e) {
         console.warn(e.message);
       }
@@ -87,6 +87,12 @@ export default new Vuex.Store({
     },
     async createBudget({ commit, dispatch }, rawData) {
       let res = await api.post("budgets", rawData);
+      commit("setMyBudget", res.data);
+      dispatch(this.getBudgets);
+    },
+    async editBudget({ commit, dispatch }, update) {
+      debugger;
+      let res = await api.put("budgets", update);
       commit("setMyBudget", res.data);
       dispatch(this.getBudgets);
     }
