@@ -8,64 +8,172 @@
         aria-describedby="modalDescription"
       >
         <header class="modal-header" id="modalTitle">
-          <slot name="header">
-            Edit Your Budget
-            <br />Make sure you total equals 0
-            <br />
-            Total: {{remainder}}
-            <button
-              type="button"
-              class="btn-close"
-              @click="close"
-              aria-label="Close modal"
-            >x</button>
+          <slot name="header" class="row">
+            <div class="col">
+              <div class="row">
+                <div class="col-10 title-col">
+                  <h3>Edit Your Budget</h3>
+                </div>
+                <div class="col-2 btn-col">
+                  <button type="button" class="btn-close" @click="close" aria-label="Close modal">x</button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-10 sub1">Make sure Total: 0</div>
+                <div class="col-2 sub2">
+                  <h5>Total: {{remainder}}</h5>
+                </div>
+              </div>
+            </div>
           </slot>
         </header>
         <section class="modal-body" id="modalDescription">
-          <slot name="body">
-            <label for="income">Income</label>
-            <input type="number" id="income" for="income" required v-model="newBudget.income" />
-            <label for="housing">Housing</label>
-            <input type="number" id="housing" for="housing" required v-model="newBudget.housing" />
-            <label for="transportation">Transportation</label>
-            <input
-              type="number"
-              id="transportation"
-              for="transportation"
-              required
-              v-model="newBudget.trans"
-            />
-            <label for="food">Food</label>
-            <input type="number" id="food" for="food" required v-model="newBudget.food" />
-            <label for="utilities">Utilities</label>
-            <input type="number" id="utilities" for="utilities" required v-model="newBudget.utils" />
-            <label for="insurance">Insurance</label>
-            <input
-              type="number"
-              id="insurance"
-              for="insurance"
-              required
-              v-model="newBudget.insurance"
-            />
-            <label for="medical">Medical</label>
-            <input type="number" id="medical" for="medical" required v-model="newBudget.medical" />
-            <label for="savings">Savings</label>
-            <input type="number" id="savings" for="savings" required v-model="newBudget.savings" />
-            <label for="investing">Investing</label>
-            <input type="number" id="investing" for="investing" required v-model="newBudget.invest" />
-            <label for="debt">Debt Payments</label>
-            <input type="number" id="debt" for="debt" required v-model="newBudget.debtPay" />
-            <label for="rec">Recreation/Entertainment</label>
-            <input type="number" id="rec" for="rec" required v-model="newBudget.recEnt" />
-            <label for="misc">Miscellaneous</label>
-            <input type="number" id="misc" for="misc" required v-model="newBudget.misc" />
+          <slot name="body" class="form__group field">
+            <div class="row">
+              <div class="col-6 label">
+                <label for="income">Income</label>
+              </div>
+              <div class="col-6">
+                <input type="number" id="income" for="income" required v-model="newBudget.income" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 label">
+                <label for="housing">Housing</label>
+              </div>
+              <div class="col-6">
+                <input
+                  type="number"
+                  id="housing"
+                  for="housing"
+                  required
+                  v-model="newBudget.housing"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 label">
+                <label for="transportation">Transportation</label>
+              </div>
+              <div class="col-6">
+                <input
+                  type="number"
+                  id="transportation"
+                  for="transportation"
+                  required
+                  v-model="newBudget.trans"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 label">
+                <label for="food">Food</label>
+              </div>
+              <div class="col-6">
+                <input type="number" id="food" for="food" required v-model="newBudget.food" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 label">
+                <label for="utilities">Utilities</label>
+              </div>
+              <div class="col-6">
+                <input
+                  type="number"
+                  id="utilities"
+                  for="utilities"
+                  required
+                  v-model="newBudget.utils"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 label">
+                <label for="insurance">Insurance</label>
+              </div>
+              <div class="col-6">
+                <input
+                  type="number"
+                  id="insurance"
+                  for="insurance"
+                  required
+                  v-model="newBudget.insurance"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 label">
+                <label for="medical">Medical</label>
+              </div>
+              <div class="col-6">
+                <input
+                  type="number"
+                  id="medical"
+                  for="medical"
+                  required
+                  v-model="newBudget.medical"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 label">
+                <label for="savings">Savings</label>
+              </div>
+              <div class="col-6">
+                <input
+                  type="number"
+                  id="savings"
+                  for="savings"
+                  required
+                  v-model="newBudget.savings"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 label">
+                <label for="investing">Investing</label>
+              </div>
+              <div class="col-6">
+                <input
+                  type="number"
+                  id="investing"
+                  for="investing"
+                  required
+                  v-model="newBudget.invest"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 label">
+                <label for="debt">Debt Payments</label>
+              </div>
+              <div class="col-6">
+                <input type="number" id="debt" for="debt" required v-model="newBudget.debtPay" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 label">
+                <label for="rec">Recreation/Entertainment</label>
+              </div>
+              <div class="col-6">
+                <input type="number" id="rec" for="rec" required v-model="newBudget.recEnt" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 label">
+                <label for="misc">Miscellaneous</label>
+              </div>
+              <div class="col-6">
+                <input type="number" id="misc" for="misc" required v-model="newBudget.misc" />
+              </div>
+            </div>
           </slot>
         </section>
         <footer class="modal-footer">
           <slot name="footer">
             <button
               type="button"
-              class="btn btn-success"
+              class="btn-green"
               @click.prevent="editBudget"
               aria-label="Submit"
             >Submit</button>
@@ -166,14 +274,16 @@ export default {
   overflow-x: auto;
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 50%;
   height: auto;
   position: relative;
+  overflow: hidden;
+  border-radius: 5px;
 }
 
 .modal-header,
 .modal-footer {
-  padding: 15px;
+  padding: 5px;
   display: flex;
 }
 
@@ -191,16 +301,22 @@ export default {
 .modal-body {
   position: relative;
   padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .btn-close {
   border: none;
   font-size: 20px;
-  padding: 20px;
+  padding: 0px;
   cursor: pointer;
   font-weight: bold;
   color: #4aae9b;
   background: transparent;
+}
+
+.btn-close:hover {
+  color: #56dac1;
 }
 
 .btn-green {
@@ -208,5 +324,57 @@ export default {
   background: #4aae9b;
   border: 1px solid #4aae9b;
   border-radius: 2px;
+  cursor: pointer;
+}
+
+.btn-green:hover {
+  background: #56dac1;
+  border: 1px solid #56dac1;
+}
+
+.btn-col {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin-left: -9%;
+}
+
+input[type="number"] {
+  max-width: 300px;
+  text-align: -webkit-right;
+  border-top-style: none;
+  border-bottom-style: solid;
+  border-right-style: none;
+  border-left-style: none;
+  border-color: #4aae9b;
+}
+
+input[type="number"]:hover {
+  border-color: #56dac1;
+}
+.label {
+  text-align: -webkit-auto;
+}
+
+.col-6 {
+  width: 95%;
+}
+
+.sub1 {
+  text-align: left;
+}
+
+.title-col {
+  margin-left: 8%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input:focus {
+  outline: none !important;
 }
 </style>

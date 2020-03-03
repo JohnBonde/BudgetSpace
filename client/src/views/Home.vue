@@ -7,19 +7,32 @@
           type="button"
           class="btn btn-primary"
           @click="showModal"
-        >Create Budget</button>
+        >
+          Create Budget
+        </button>
         <button
           v-if="myBudget"
           type="button"
           class="btn btn-warning"
-          @click="showModal2(); forceRerender();"
-        >Edit Budget</button>
-        <button type="button" class="btn btn-danger" @click="logout">Logout</button>
+          @click="
+            showModal2();
+            forceRerender();
+          "
+        >
+          Edit Budget
+        </button>
+        <button type="button" class="btn btn-danger" @click="logout">
+          Logout
+        </button>
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <budget :budgetData="myBudget" :userData="budgets" :key="componentKey" />
+        <budget
+          :budgetData="myBudget"
+          :userData="budgets"
+          :key="componentKey"
+        />
       </div>
     </div>
     <create-modal v-show="isModalVisible" @close="closeModal" />
