@@ -19,12 +19,13 @@
     </div>
     <div class="row">
       <div class="col">
-        <budget :budgetData="myBudget" :userData="budgets" />
+        <budget :budgetData="myBudget" :userData="budgets" :key="componentKey" />
       </div>
     </div>
     <create-modal v-show="isModalVisible" @close="closeModal" />
     <edit-modal
-      :bData="myBudgetRaw"
+      :bData="myBudget"
+      :uData="userInfo"
       :key="componentKey"
       v-show="isModalVisible2"
       @close="closeModal2"
@@ -64,9 +65,10 @@ export default {
     myBudget() {
       return this.$store.state.myBudget;
     },
-    myBudgetRaw() {
-      debugger;
-      return this.$store.state.myBudgetRaw;
+    userInfo() {
+      let userInfo = {};
+      userInfo._id = this.$store.state.myBudget._id;
+      return userInfo;
     }
   },
   methods: {

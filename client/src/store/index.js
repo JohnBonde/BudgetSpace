@@ -21,8 +21,7 @@ export default new Vuex.Store({
   state: {
     user: {},
     budgets: [],
-    myBudget: {},
-    myBudgetRaw: {}
+    myBudget: {}
   },
   mutations: {
     setUser(state, user) {
@@ -33,9 +32,6 @@ export default new Vuex.Store({
     },
     setMyBudget(state, budget) {
       state.myBudget = budget;
-    },
-    setMyBudgetRaw(state, budget) {
-      state.myBudgetRaw = budget;
     }
   },
   actions: {
@@ -44,7 +40,7 @@ export default new Vuex.Store({
       try {
         let user = await AuthService.Register(creds);
         commit("setUser", user);
-        router.push({ name: "home" });
+        router.push({ name: "Home" });
       } catch (e) {
         console.warn(e.message);
       }
@@ -53,7 +49,7 @@ export default new Vuex.Store({
       try {
         let user = await AuthService.Login(creds);
         commit("setUser", user);
-        router.push({ name: "home" });
+        router.push({ name: "Home" });
       } catch (e) {
         console.warn(e.message);
       }
@@ -79,7 +75,6 @@ export default new Vuex.Store({
     async getMyBudget({ commit, dispatch }) {
       let res = await api.get("budgets/user");
       commit("setMyBudget", res.data);
-      commit("setMyBudgetRaw", res.data);
     },
     async createBudget({ commit, dispatch }, rawData) {
       let res = await api.post("budgets", rawData);
@@ -87,10 +82,9 @@ export default new Vuex.Store({
       dispatch(this.getBudgets);
     },
     async editBudget({ commit, dispatch }, update) {
-      debugger;
-      let res = await api.put("budgets", update);
+      let res = await api.put("budgets/" + update._id, update);
       commit("setMyBudget", res.data);
-      dispatch(this.getBudgets);
+      dispatch(this.getMyBudget);
     }
     //#endregion
   }

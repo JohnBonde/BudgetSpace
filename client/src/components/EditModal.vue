@@ -80,7 +80,7 @@
 import Swal from "sweetalert2";
 export default {
   name: "editmodal",
-  props: ["bData"],
+  props: ["bData", "uData"],
   data() {
     return {
       newBudget: {
@@ -138,6 +138,7 @@ export default {
           text: "Income and expenses must be equal."
         });
       } else {
+        budget._id = this.uData._id;
         this.$store.dispatch("editBudget", budget);
         this.close();
       }
