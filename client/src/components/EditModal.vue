@@ -15,13 +15,20 @@
                   <h3>Edit Your Budget</h3>
                 </div>
                 <div class="col-2 btn-col">
-                  <button type="button" class="btn-close" @click="close" aria-label="Close modal">x</button>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    @click="close"
+                    aria-label="Close modal"
+                  >
+                    x
+                  </button>
                 </div>
               </div>
               <div class="row">
                 <div class="col-10 sub1">Make sure Total: 0</div>
                 <div class="col-2 sub2">
-                  <h5>Total: {{remainder}}</h5>
+                  <h5>Total: {{ remainder }}</h5>
                 </div>
               </div>
             </div>
@@ -34,7 +41,13 @@
                 <label for="income">Income</label>
               </div>
               <div class="col-6">
-                <input type="number" id="income" for="income" required v-model="newBudget.income" />
+                <input
+                  type="number"
+                  id="income"
+                  for="income"
+                  required
+                  v-model="newBudget.income"
+                />
               </div>
             </div>
             <div class="row">
@@ -70,7 +83,13 @@
                 <label for="food">Food</label>
               </div>
               <div class="col-6">
-                <input type="number" id="food" for="food" required v-model="newBudget.food" />
+                <input
+                  type="number"
+                  id="food"
+                  for="food"
+                  required
+                  v-model="newBudget.food"
+                />
               </div>
             </div>
             <div class="row">
@@ -148,7 +167,13 @@
                 <label for="debt">Debt Payments</label>
               </div>
               <div class="col-6">
-                <input type="number" id="debt" for="debt" required v-model="newBudget.debtPay" />
+                <input
+                  type="number"
+                  id="debt"
+                  for="debt"
+                  required
+                  v-model="newBudget.debtPay"
+                />
               </div>
             </div>
             <div class="row">
@@ -156,7 +181,13 @@
                 <label for="rec">Recreation/Entertainment</label>
               </div>
               <div class="col-6">
-                <input type="number" id="rec" for="rec" required v-model="newBudget.recEnt" />
+                <input
+                  type="number"
+                  id="rec"
+                  for="rec"
+                  required
+                  v-model="newBudget.recEnt"
+                />
               </div>
             </div>
             <div class="row">
@@ -164,7 +195,13 @@
                 <label for="misc">Miscellaneous</label>
               </div>
               <div class="col-6">
-                <input type="number" id="misc" for="misc" required v-model="newBudget.misc" />
+                <input
+                  type="number"
+                  id="misc"
+                  for="misc"
+                  required
+                  v-model="newBudget.misc"
+                />
               </div>
             </div>
           </slot>
@@ -173,10 +210,12 @@
           <slot name="footer">
             <button
               type="button"
-              class="btn-green"
+              class="btn btn-primary"
               @click.prevent="editBudget"
               aria-label="Submit"
-            >Submit</button>
+            >
+              Submit
+            </button>
           </slot>
         </footer>
       </div>
@@ -289,7 +328,7 @@ export default {
 
 .modal-header {
   border-bottom: 1px solid #eeeeee;
-  color: #4aae9b;
+  color: #2aaf74;
   justify-content: space-between;
 }
 
@@ -311,25 +350,20 @@ export default {
   padding: 0px;
   cursor: pointer;
   font-weight: bold;
-  color: #4aae9b;
+  color: #2aaf74;
   background: transparent;
 }
 
 .btn-close:hover {
-  color: #56dac1;
+  color: #4ed99c;
 }
 
-.btn-green {
-  color: white;
-  background: #4aae9b;
-  border: 1px solid #4aae9b;
-  border-radius: 2px;
-  cursor: pointer;
+.btn-primary {
+  background-color: #2aaf74 !important;
 }
 
-.btn-green:hover {
-  background: #56dac1;
-  border: 1px solid #56dac1;
+.btn-primary:hover {
+  background-color: #4ed99c !important;
 }
 
 .btn-col {
@@ -346,11 +380,11 @@ input[type="number"] {
   border-bottom-style: solid;
   border-right-style: none;
   border-left-style: none;
-  border-color: #4aae9b;
+  border-color: #2aaf74;
 }
 
 input[type="number"]:hover {
-  border-color: #56dac1;
+  border-color: #4ed99c;
 }
 .label {
   text-align: -webkit-auto;

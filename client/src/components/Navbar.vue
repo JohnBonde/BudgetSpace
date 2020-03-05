@@ -17,7 +17,9 @@
       id="navbarSupportedContent"
       style="justify-content: flex-end"
     >
-      <button @click="logout" class="btn btn-outline-danger my-2 my-sm-0" type="button">Logout</button>
+      <button @click="logout" class="btn btn-danger" type="button">
+        Logout
+      </button>
     </div>
   </nav>
 </template>
@@ -34,4 +36,15 @@ export default {
 </script>
 
 <style>
+nav {
+  color: white;
+}
+
+.btn-danger {
+  background-color: #f7be7f !important;
+}
+
+.btn-danger:hover {
+  background-color: #faac53 !important;
+}
 </style>

@@ -11,21 +11,29 @@
             type="button"
             class="btn btn-primary"
             @click="showModal"
-          >Create Budget</button>
+          >
+            Create Budget
+          </button>
           <button
             v-if="myBudget"
             type="button"
-            class="btn btn-warning"
+            class="btn btn-primary"
             @click="
-            showModal2();
-            forceRerender();
-          "
-          >Edit Budget</button>
+              showModal2();
+              forceRerender();
+            "
+          >
+            Edit Budget
+          </button>
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <budget :budgetData="myBudget" :userData="budgets" :key="componentKey" />
+          <budget
+            :budgetData="myBudget"
+            :userData="budgets"
+            :key="componentKey"
+          />
         </div>
       </div>
       <create-modal v-show="isModalVisible" @close="closeModal" />
@@ -105,5 +113,13 @@ export default {
 <style scoped>
 header {
   padding: 0;
+}
+
+.btn-primary {
+  background-color: #2aaf74 !important;
+}
+
+.btn-primary:hover {
+  background-color: #4ed99c !important;
 }
 </style>
