@@ -5,15 +5,15 @@
     </header>
     <div class="body container-fluid">
       <div class="row">
-        <div class="col">
+        <div class="col-6 create-btn">
           <button
             v-if="!myBudget"
             type="button"
             class="btn btn-primary"
             @click="showModal"
-          >
-            Create Budget
-          </button>
+          >Create Budget</button>
+        </div>
+        <div class="col-6 edit-btn">
           <button
             v-if="myBudget"
             type="button"
@@ -22,18 +22,12 @@
               showModal2();
               forceRerender();
             "
-          >
-            Edit Budget
-          </button>
+          >Edit Budget</button>
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <budget
-            :budgetData="myBudget"
-            :userData="budgets"
-            :key="componentKey"
-          />
+          <budget :budgetData="myBudget" :userData="budgets" :key="componentKey" />
         </div>
       </div>
       <create-modal v-show="isModalVisible" @close="closeModal" />
@@ -121,5 +115,17 @@ header {
 
 .btn-primary:hover {
   background-color: #4ed99c !important;
+}
+
+.create-btn {
+  padding: 10px;
+  justify-content: flex-start;
+  display: flex;
+}
+
+.edit-btn {
+  padding: 10px;
+  justify-content: flex-end;
+  display: flex;
 }
 </style>

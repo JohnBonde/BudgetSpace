@@ -1,80 +1,76 @@
 <template>
-  <table class="table budget">
-    <thead>
+  <table class="table shadow-lg">
+    <thead class="thead-dark">
       <tr>
-        <th scope="col">Category</th>
-        <th scope="col">Amount</th>
-        <th scope="col">Your %</th>
-        <th scope="col">Avg %</th>
+        <th scope="col" class="title">Income</th>
+        <th scope="col" class="title">${{ budgetData.income }}</th>
+        <th scope="col" class="title">Your %</th>
+        <th scope="col" class="title">Avg %</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">Income</th>
-        <th>${{ budgetData.income }}</th>
-      </tr>
-      <tr>
-        <th scope="row">Housing</th>
+      <tr class="bg-color">
+        <th scope="row" class="title">Housing</th>
         <td>${{ budgetData.housing }}</td>
         <td>{{ myPct[1] }}%</td>
         <td>{{ avgPct[0] }}%</td>
       </tr>
       <tr>
-        <th scope="row">Transportation</th>
+        <th scope="row" class="title">Transportation</th>
         <td>${{ budgetData.trans }}</td>
         <td>{{ myPct[2] }}%</td>
         <td>{{ avgPct[1] }}%</td>
       </tr>
-      <tr>
-        <th scope="row">Food</th>
+      <tr class="bg-color">
+        <th scope="row" class="title">Food</th>
         <td>${{ budgetData.food }}</td>
         <td>{{ myPct[3] }}%</td>
         <td>{{ avgPct[2] }}%</td>
       </tr>
       <tr>
-        <th scope="row">Utilities</th>
+        <th scope="row" class="title">Utilities</th>
         <td>${{ budgetData.utils }}</td>
         <td>{{ myPct[4] }}%</td>
         <td>{{ avgPct[3] }}%</td>
       </tr>
-      <tr>
-        <th scope="row">Insurance</th>
+      <tr class="bg-color">
+        <th scope="row" class="title">Insurance</th>
         <td>${{ budgetData.insurance }}</td>
         <td>{{ myPct[5] }}%</td>
         <td>{{ avgPct[4] }}%</td>
       </tr>
       <tr>
-        <th scope="row">Medical</th>
+        <th scope="row" class="title">Medical</th>
         <td>${{ budgetData.medical }}</td>
         <td>{{ myPct[6] }}%</td>
         <td>{{ avgPct[5] }}%</td>
       </tr>
-      <tr>
-        <th scope="row">Investing</th>
+      <tr class="bg-color">
+        <th scope="row" class="title">Investing</th>
         <td>${{ budgetData.invest }}</td>
         <td>{{ myPct[7] }}%</td>
         <td>{{ avgPct[6] }}%</td>
       </tr>
       <tr>
-        <th scope="row">Savings</th>
+        <th scope="row" class="title">Savings</th>
         <td>${{ budgetData.savings }}</td>
         <td>{{ myPct[8] }}%</td>
         <td>{{ avgPct[7] }}%</td>
       </tr>
-      <tr>
-        <th scope="row">Debt Payments</th>
+      <tr class="bg-color">
+        <th scope="row" class="title">Debt Payments</th>
         <td>${{ budgetData.debtPay }}</td>
         <td>{{ myPct[9] }}%</td>
         <td>{{ avgPct[8] }}%</td>
       </tr>
       <tr>
-        <th scope="row">Recreation/Entertainment</th>
+        <th scope="row" class="title">Recreation/Entertainment</th>
         <td>${{ budgetData.recEnt }}</td>
         <td>{{ myPct[10] }}%</td>
         <td>{{ avgPct[9] }}%</td>
       </tr>
-      <tr>
-        <th scope="row">Miscellaneous</th>
+      <tr class="bg-color">
+        <th scope="row" class="title">Miscellaneous</th>
         <td>${{ budgetData.misc }}</td>
         <td>{{ myPct[11] }}%</td>
         <td>{{ avgPct[10] }}%</td>
@@ -133,4 +129,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.bg-color {
+  background-color: #d1ebfe;
+}
+
+.title {
+  font-weight: bold;
+}
+</style>
